@@ -19,6 +19,8 @@ class App {
       this.printHint(strike, ball);
 
       if (strike === 3) {
+        Console.print("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+
         return;
       }
 
