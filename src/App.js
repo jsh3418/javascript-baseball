@@ -8,10 +8,10 @@ class App {
 
   play() {
     Console.print(MESSAGE.GAME_START);
-    this.initComputerAnswer();
+    this.initGame();
   }
 
-  initComputerAnswer() {
+  initGame() {
     this.computerAnswer = this.makeComputerAnswer();
     this.readAnswer();
   }
@@ -89,7 +89,7 @@ class App {
   considerRestart() {
     Console.readLine(MESSAGE.REQUEST_RESTART_OR_NOT, (answer) => {
       if (answer === GAME.RESTART.YES) {
-        this.initComputerAnswer();
+        this.initGame();
       }
 
       if (answer === GAME.RESTART.NO) {
