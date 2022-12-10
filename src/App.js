@@ -17,17 +17,17 @@ class App {
   }
 
   makeComputerAnswer() {
-    const computerAnswer = [];
+    const answer = [];
 
-    while (computerAnswer.length < GAME.ANSWER_LENGTH) {
+    while (answer.length < GAME.ANSWER_LENGTH) {
       const number = Random.pickNumberInRange(GAME.ANSWER_RANGE.MIN, GAME.ANSWER_RANGE.MAX);
 
-      if (!computerAnswer.includes(number)) {
-        computerAnswer.push(number);
+      if (!answer.includes(number)) {
+        answer.push(number);
       }
     }
 
-    return computerAnswer;
+    return answer;
   }
 
   readAnswer() {
