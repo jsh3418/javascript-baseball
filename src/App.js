@@ -7,6 +7,10 @@ class App {
 
   play() {
     Console.print("숫자 야구 게임을 시작합니다.");
+    this.initComputerAnswer();
+  }
+
+  initComputerAnswer() {
     this.computerAnswer = this.makeComputerAnswer();
     this.readAnswer();
   }
@@ -20,6 +24,7 @@ class App {
 
       if (strike === 3) {
         Console.print("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        this.considerRestart();
 
         return;
       }
@@ -64,6 +69,18 @@ class App {
     }
 
     Console.print(arr.join(" "));
+  }
+
+  considerRestart() {
+    Console.readLine("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n", (answer) => {
+      if (answer === "1") {
+        this.initComputerAnswer();
+      }
+
+      if (answer === "2") {
+        Console.close();
+      }
+    });
   }
 
   makeComputerAnswer() {
