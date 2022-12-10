@@ -13,8 +13,10 @@ class App {
 
   readAnswer() {
     Console.readLine("숫자를 입력해주세요 : ", (answer) => {
-      const playerAnswer = answer.split("");
-      this.compareAnswers(this.computerAnswer, playerAnswer);
+      const playerAnswer = answer.split("").map(Number);
+      const [strike, ball] = this.compareAnswers(this.computerAnswer, playerAnswer);
+
+      this.printHint(strike, ball);
     });
   }
 
@@ -35,6 +37,25 @@ class App {
     });
 
     return [strike, ball];
+  }
+
+  printHint(strike, ball) {
+    const arr = [];
+
+    if (ball !== 0) {
+      arr.push(ball + "볼");
+    }
+
+    if (strike !== 0) {
+      arr.push(strike + "스트라이크");
+    }
+
+    if (arr.length === 0) {
+      Console.print("낫싱");
+      return;
+    }
+
+    Console.print(arr.join(" "));
   }
 
   makeComputerAnswer() {
