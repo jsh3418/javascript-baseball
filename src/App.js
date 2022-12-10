@@ -14,7 +14,27 @@ class App {
   readAnswer() {
     Console.readLine("숫자를 입력해주세요 : ", (answer) => {
       const playerAnswer = answer.split("");
+      this.compareAnswers(this.computerAnswer, playerAnswer);
     });
+  }
+
+  compareAnswers(computerAnswer, playerAnswer) {
+    let strike = 0;
+    let ball = 0;
+
+    computerAnswer.forEach((number, index) => {
+      if (number === playerAnswer[index]) {
+        strike++;
+        return;
+      }
+
+      if (playerAnswer.includes(number)) {
+        ball++;
+        return;
+      }
+    });
+
+    return [strike, ball];
   }
 
   makeComputerAnswer() {
