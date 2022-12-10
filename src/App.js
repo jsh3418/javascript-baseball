@@ -1,4 +1,5 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
+const { MESSAGE, GAME } = require("./constants/constant");
 
 class App {
   constructor() {
@@ -6,7 +7,7 @@ class App {
   }
 
   play() {
-    Console.print("숫자 야구 게임을 시작합니다.");
+    Console.print(MESSAGE.GAME_START);
     this.initComputerAnswer();
   }
 
@@ -15,15 +16,29 @@ class App {
     this.readAnswer();
   }
 
+  makeComputerAnswer() {
+    const computerAnswer = [];
+
+    while (computerAnswer.length < GAME.ANSWER_LENGTH) {
+      const number = Random.pickNumberInRange(GAME.ANSWER_RANGE.MIN, GAME.ANSWER_RANGE.MAX);
+
+      if (!computerAnswer.includes(number)) {
+        computerAnswer.push(number);
+      }
+    }
+
+    return computerAnswer;
+  }
+
   readAnswer() {
-    Console.readLine("숫자를 입력해주세요 : ", (answer) => {
+    Console.readLine(MESSAGE.REQUEST_ANSWER, (answer) => {
       const playerAnswer = answer.split("").map(Number);
       const [strike, ball] = this.compareAnswers(this.computerAnswer, playerAnswer);
 
       this.printHint(strike, ball);
 
-      if (strike === 3) {
-        Console.print("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+      if (strike === GAME.THREE_STRIKE_OUT) {
+        Console.print(MESSAGE.GAME_END);
         this.considerRestart();
 
         return;
@@ -56,15 +71,15 @@ class App {
     const arr = [];
 
     if (ball !== 0) {
-      arr.push(ball + "볼");
+      arr.push(ball + GAME.BALL);
     }
 
     if (strike !== 0) {
-      arr.push(strike + "스트라이크");
+      arr.push(strike + GAME.STRIKE);
     }
 
     if (arr.length === 0) {
-      Console.print("낫싱");
+      Console.print(GAME.NOTHING);
       return;
     }
 
@@ -72,29 +87,15 @@ class App {
   }
 
   considerRestart() {
-    Console.readLine("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n", (answer) => {
-      if (answer === "1") {
+    Console.readLine(MESSAGE.REQUEST_RESTART_OR_NOT, (answer) => {
+      if (answer === GAME.RESTART.YES) {
         this.initComputerAnswer();
       }
 
-      if (answer === "2") {
+      if (answer === GAME.RESTART.NO) {
         Console.close();
       }
     });
-  }
-
-  makeComputerAnswer() {
-    const computerAnswer = [];
-
-    while (computerAnswer.length < 3) {
-      const number = Random.pickNumberInRange(1, 9);
-
-      if (!computerAnswer.includes(number)) {
-        computerAnswer.push(number);
-      }
-    }
-
-    return computerAnswer;
   }
 }
 
