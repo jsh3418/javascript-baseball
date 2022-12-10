@@ -17,6 +17,12 @@ class App {
       const [strike, ball] = this.compareAnswers(this.computerAnswer, playerAnswer);
 
       this.printHint(strike, ball);
+
+      if (strike === 3) {
+        return;
+      }
+
+      this.readAnswer();
     });
   }
 
