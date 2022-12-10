@@ -55,11 +55,13 @@ class App {
     computerAnswer.forEach((number, index) => {
       if (number === playerAnswer[index]) {
         strike++;
+
         return;
       }
 
       if (playerAnswer.includes(number)) {
         ball++;
+
         return;
       }
     });
@@ -80,6 +82,7 @@ class App {
 
     if (arr.length === 0) {
       Console.print(GAME.NOTHING);
+
       return;
     }
 
