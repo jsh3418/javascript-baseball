@@ -1,6 +1,6 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const { MESSAGE, GAME } = require("./constants/constant");
-const validateAnswer = require("./validation/validate");
+const validateAnswer = require("./validation/validateAnswer");
 
 class App {
   constructor() {
