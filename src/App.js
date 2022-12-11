@@ -1,6 +1,7 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const { MESSAGE, GAME } = require("./constants/constant");
 const validateAnswer = require("./validation/validateAnswer");
+const validateRestartAnswer = require("./validation/validateRestartAnswer");
 
 class App {
   constructor() {
@@ -93,6 +94,8 @@ class App {
 
   considerRestart() {
     Console.readLine(MESSAGE.REQUEST_RESTART_OR_NOT, (answer) => {
+      validateRestartAnswer(answer);
+
       if (answer === GAME.RESTART.YES) {
         this.initGame();
       }
