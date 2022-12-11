@@ -1,5 +1,6 @@
 const { Console, Random } = require("@woowacourse/mission-utils");
 const { MESSAGE, GAME } = require("./constants/constant");
+const validateAnswer = require("./validation/validate");
 
 class App {
   constructor() {
@@ -32,6 +33,7 @@ class App {
 
   readAnswer() {
     Console.readLine(MESSAGE.REQUEST_ANSWER, (answer) => {
+      validateAnswer(answer);
       const playerAnswer = answer.split("").map(Number);
       const [strike, ball] = this.compareAnswers(this.computerAnswer, playerAnswer);
 
