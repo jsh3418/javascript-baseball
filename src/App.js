@@ -27,7 +27,52 @@ class App {
   }
 
   readAnswer() {
-    Console.readLine(GAME.MESSAGE.REQUEST.GUESS_ANSWER, (answer) => {});
+    Console.readLine(GAME.MESSAGE.REQUEST.GUESS_ANSWER, (userAnswer) => {
+      const [ball, strike] = this.compareAnswers(this.computerAnswer, userAnswer);
+      this.printHint(ball, strike);
+    });
+  }
+
+  compareAnswers(computerAnswer, userAnswer) {
+    userAnswer = userAnswer.split("").map(Number);
+
+    let [ball, strike] = [0, 0];
+
+    computerAnswer.forEach((number, index) => {
+      if (number === userAnswer[index]) {
+        strike++;
+
+        return;
+      }
+
+      if (computerAnswer.includes(userAnswer[index])) {
+        ball++;
+
+        return;
+      }
+    });
+
+    return [ball, strike];
+  }
+
+  printHint(ball, strike) {
+    const arr = [];
+
+    if (ball !== 0) {
+      arr.push(ball + GAME.MESSAGE.HINT.BALL);
+    }
+
+    if (strike !== 0) {
+      arr.push(strike + GAME.MESSAGE.HINT.STRIKE);
+    }
+
+    if (!ball && !strike) {
+      Console.print(GAME.MESSAGE.HINT.NOTHING);
+
+      return;
+    }
+
+    Console.print(arr.join(" "));
   }
 }
 
