@@ -30,6 +30,10 @@ class App {
     Console.readLine(GAME.MESSAGE.REQUEST.GUESS_ANSWER, (userAnswer) => {
       const [ball, strike] = this.compareAnswers(this.computerAnswer, userAnswer);
       this.printHint(ball, strike);
+
+      if (strike !== GAME.COMPUTER_ANSWER.LENGTH) {
+        this.readAnswer();
+      }
     });
   }
 
