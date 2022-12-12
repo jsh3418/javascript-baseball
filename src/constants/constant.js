@@ -14,4 +14,15 @@ const GAME = {
       NOTHING: "낫싱",
     },
   },
+
+  COMPUTER_ANSWER: {
+    LENGTH: 3,
+
+    RANGE: {
+      MIN: 1,
+      MAX: 9,
+    },
+  },
 };
+
+module.exports = GAME;
