@@ -36,6 +36,7 @@ class App {
       }
 
       Console.print(GAME.MESSAGE.END);
+      this.askRestartOrNot();
     });
   }
 
@@ -79,6 +80,10 @@ class App {
     }
 
     Console.print(arr.join(" "));
+  }
+
+  askRestartOrNot() {
+    Console.readLine(GAME.MESSAGE.REQUEST.RESTART_OR_NOT, (answer) => {});
   }
 }
 
