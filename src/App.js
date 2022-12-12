@@ -38,6 +38,8 @@ class App {
 
       if (strike !== GAME.COMPUTER_ANSWER.LENGTH) {
         this.readAnswer();
+
+        return;
       }
 
       Console.print(GAME.MESSAGE.END);
