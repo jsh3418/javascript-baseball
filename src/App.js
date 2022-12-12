@@ -9,6 +9,7 @@ class App {
   play() {
     Console.print(GAME.MESSAGE.START);
     this.computerAnswer = this.generateComputerAnswer();
+    this.readAnswer();
   }
 
   generateComputerAnswer() {
@@ -23,6 +24,10 @@ class App {
     }
 
     return answer;
+  }
+
+  readAnswer() {
+    Console.readLine(GAME.MESSAGE.REQUEST.GUESS_ANSWER, (answer) => {});
   }
 }
 
