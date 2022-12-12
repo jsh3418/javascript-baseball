@@ -34,6 +34,8 @@ class App {
       if (strike !== GAME.COMPUTER_ANSWER.LENGTH) {
         this.readAnswer();
       }
+
+      Console.print(GAME.MESSAGE.END);
     });
   }
 
