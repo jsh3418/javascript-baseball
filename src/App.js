@@ -8,8 +8,13 @@ class App {
 
   play() {
     Console.print(GAME.MESSAGE.START);
+    this.initAnswer();
+  }
+
+  initAnswer() {
     this.computerAnswer = this.generateComputerAnswer();
     this.readAnswer();
+    console.log(this.computerAnswer);
   }
 
   generateComputerAnswer() {
@@ -83,7 +88,15 @@ class App {
   }
 
   askRestartOrNot() {
-    Console.readLine(GAME.MESSAGE.REQUEST.RESTART_OR_NOT, (answer) => {});
+    Console.readLine(GAME.MESSAGE.REQUEST.RESTART_OR_NOT, (answer) => {
+      if (answer === "1") {
+        this.initAnswer();
+      }
+
+      if (answer === "2") {
+        Console.close();
+      }
+    });
   }
 }
 
